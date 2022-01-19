@@ -10,7 +10,7 @@ input {
 }
 button {
   height: 40px;
-  background-color: #533A32;
+  background-color: #533a32;
   color: white;
   cursor: pointer;
   margin: 10px;
@@ -42,9 +42,9 @@ p {
   justify-content: space-between;
 }
 .delete {
-	border: none;
-	font-size: 24px;
-	margin: 0 5px;
+  border: none;
+  font-size: 24px;
+  margin: 0 5px;
 }
 .div2::-webkit-scrollbar {
   background-color: #947566;
@@ -60,4 +60,15 @@ p {
 .link {
   text-decoration: none;
   color: white;
+}
+.logo {
+  display: grid;
+  place-items: end;
+  height: 58px;
+}
+.logo-img {
+  width: 70;
+  height: 40px;
+  margin: 5px;
+  cursor: pointer;
 }

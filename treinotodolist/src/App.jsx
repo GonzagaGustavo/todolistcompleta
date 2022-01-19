@@ -3,6 +3,7 @@ import { React, useState, useEffect } from "react";
 import { TiDelete, TiEdit } from "react-icons/ti";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Boa from "./Components/Boa";
+import Img from "./Components/Imagem3.png";
 
 function App() {
   let [todoList, setTodoList] = useState([]);
@@ -72,52 +73,60 @@ function App() {
 
   return (
     <Router>
-      <div className="app">
+      <div>
         <Route
           path="/"
           exact
           render={() => {
             return (
               <>
-                <h1>Lista de Tarefas</h1>
-                <input
-                  placeholder="Escreva uma Tarefa"
-                  onKeyDown={inputKeyDown}
-                  value={taskInput}
-                  onChange={(value) => settaskInput(value.target.value)}
-                />
-                {togleSubmit ? (
-                  <button
-                    className="btnEdit"
-                    onClick={() => adicionarNovoItem()}
-                  >
-                    Editar
-                  </button>
-                ) : (
-                  <button onClick={() => adicionarNovoItem()}>Adicionar</button>
-                )}
-                <div className="div2">
-                  <ul>
-                    {todoList?.length ? (
-                      todoList.map((elem) => (
-                        <div className="li" key={elem.id}>
-                          <li>{elem.name}</li>
-                          <TiEdit onClick={() => edititem(elem.id)}></TiEdit>
-                          <TiDelete
-                            className="delete"
-                            onClick={() => deletarItem(elem.id)}
-                          >
-                            Delete
-                          </TiDelete>
-                        </div>
-                      ))
-                    ) : (
-                      <img src="https://media4.giphy.com/media/3ohs4lMc4Vm8JMQog0/giphy.gif?cid=790b76119326892436bfab53187c5b61a0a643e02b828ec2&rid=giphy.gif&ct=s" />
-                    )}
-                  </ul>
+                <div className="app">
+                  <h1>Lista de Tarefas</h1>
+                  <input
+                    placeholder="Escreva uma Tarefa"
+                    onKeyDown={inputKeyDown}
+                    value={taskInput}
+                    onChange={(value) => settaskInput(value.target.value)}
+                  />
+                  {togleSubmit ? (
+                    <button
+                      className="btnEdit"
+                      onClick={() => adicionarNovoItem()}
+                    >
+                      Editar
+                    </button>
+                  ) : (
+                    <button onClick={() => adicionarNovoItem()}>
+                      Adicionar
+                    </button>
+                  )}
+                  <div className="div2">
+                    <ul>
+                      {todoList?.length ? (
+                        todoList.map((elem) => (
+                          <div className="li" key={elem.id}>
+                            <li>{elem.name}</li>
+                            <TiEdit onClick={() => edititem(elem.id)}></TiEdit>
+                            <TiDelete
+                              className="delete"
+                              onClick={() => deletarItem(elem.id)}
+                            >
+                              Delete
+                            </TiDelete>
+                          </div>
+                        ))
+                      ) : (
+                        <img src="https://media4.giphy.com/media/3ohs4lMc4Vm8JMQog0/giphy.gif?cid=790b76119326892436bfab53187c5b61a0a643e02b828ec2&rid=giphy.gif&ct=s" />
+                      )}
+                    </ul>
+                  </div>
+                  <Link className="link" to="/Boa">
+                    <button className="btnBoa">Clique Aqui!</button>
+                  </Link>
                 </div>
-                
-                <button className="btnBoa"><Link className="link" to="/Boa">Clique Aqui!</Link></button>
+                <div className="logo">
+                  <img src={Img} className="logo-img" alt="" />
+                </div>
               </>
             );
           }}
