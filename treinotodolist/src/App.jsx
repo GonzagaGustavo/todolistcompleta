@@ -43,6 +43,7 @@ function App() {
       const allInputData = {
         id: new Date().getTime().toString(),
         name: taskInput,
+        conpleted: false,
       };
       setTodoList([...todoList, allInputData]);
       settaskInput("");
@@ -71,6 +72,18 @@ function App() {
     setIsEditItem(id);
   };
 
+  function concluida(taskId) {
+    const newTasks = todoList.map(task => {
+      if(task.id === taskId)
+      return {
+        ...task, completed: !task.completed
+      };
+      return task;
+    })
+    setTodoList(newTasks)
+    console.log(todoList.completed)
+  }
+
   return (
     <Router>
       <div>
@@ -82,12 +95,15 @@ function App() {
               <>
                 <div className="app">
                   <h1>Lista de Tarefas</h1>
+                  <div className="label-float">
                   <input
-                    placeholder="Escreva uma Tarefa"
+                    placeholder=" "
                     onKeyDown={inputKeyDown}
                     value={taskInput}
                     onChange={(value) => settaskInput(value.target.value)}
                   />
+                  <label>Escreva uma Tarefa</label>
+                  </div>
                   {togleSubmit ? (
                     <button
                       className="btnEdit"
@@ -104,8 +120,13 @@ function App() {
                     <ul>
                       {todoList?.length ? (
                         todoList.map((elem) => (
-                          <div className="li" key={elem.id}>
-                            <li>{elem.name}</li>
+                          <div className="li" key={elem.id}
+                          
+                          >
+                            <li onClick={() => concluida(elem.id)}
+                            style={elem.completed ? {background: 'green', borderRadius: '5px'} : { }}
+
+                            >{elem.name}</li>
                             <TiEdit onClick={() => edititem(elem.id)}></TiEdit>
                             <TiDelete
                               className="delete"
@@ -125,7 +146,7 @@ function App() {
                   </Link>
                 </div>
                 <div className="logo">
-                  <img src={Img} className="logo-img" alt="" />
+                  <a href="https://portifoliogustavo.netlify.app/"><img src={Img} className="logo-img" alt="" /></a>
                 </div>
               </>
             );
